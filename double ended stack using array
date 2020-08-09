@@ -1,0 +1,147 @@
+#include <bits/stdc++.h>
+#define max 6
+
+using namespace std;
+
+int arr[max], i, top1= -1, top2= max;   //top2=6
+
+void push1 (int a);
+void push2 (int a);
+void pop1();
+void pop2();
+void menu();
+void print();
+
+
+int main()
+{
+        int choice, number;
+        //cin>>choice;
+        while(1)
+        {
+            menu();
+            cin>>choice;
+           
+            if(choice==1)
+            {   
+                cout<<"Enter a number: ";
+                cin>>number;
+                push1(number);
+            
+            }
+            else if(choice==2)
+                pop1();
+            else if(choice==3)
+            {
+                cout<<"Enter a number: ";
+                cin>>number;
+                push2(number);
+            }   
+            else if(choice==4)
+                pop2();
+            else if(choice==5)
+            {
+                cout<<endl<<"\tThank You!!!";
+                break;
+                
+            }
+            else 
+                cout<<"Invalid Input!!!";
+
+        }
+
+    return 0;
+}
+
+
+void push1 (int a)
+{
+        //int l = 0;
+        if(top1 < top2-1) //0 to 5
+        {
+                //cout<<l+1;
+                
+                top1++;
+                arr[top1] = a;     
+                //flag
+                print();
+        }
+        else 
+                cout<<"Front Stack Overflow...";
+}
+
+void push2 (int a)
+{
+        //int l = 0;
+        if(top1 < top2-1) //0 to 5
+        {
+                //cout<<l+1;
+                
+                top2--; // top = 6-1 = 5
+                arr[top2] = a;     
+                //flag
+                print();
+        }
+        else 
+                cout<<"Rear Stack Overflow...";
+}
+
+
+void pop1()
+{
+        if(top1<0)
+            cout<<"Front Stack Underflow...";
+        else
+        {
+            arr[top1]=NULL;
+       // arr[top1]=0;
+            top1--; 
+      //  cout<<endl<<"Top1:  "<<top1<<endl;
+            print();
+        }
+      
+        
+}
+
+
+void pop2()
+{
+        if(top2>max-1)
+               cout<< "Rear Stack Underflow...";
+        else
+        {
+        arr[top2]=NULL;
+       // arr[top1]=0;
+        top2++; 
+        print();
+        }
+      //  cout<<endl<<"Top1:  "<<top1<<endl;
+}
+
+
+void menu()
+{
+        cout<<endl<<"\t  MENU"<<endl;
+        cout<<"Press 1 to push in front"<<endl;
+        cout<<"Press 2 to pop from front"<<endl;
+        cout<<"Press 3 to push in rear"<<endl;
+        cout<<"Press 4 to pop from rear"<<endl;
+        cout<<"Press 5 to Exit!!!"<<endl<<endl;
+        cout<<"Enter choice: "<<endl;
+}
+
+void print()
+{
+    if(top1==-1 && top2==max)
+        cout<<"Array is empty"<<endl;
+    else
+    {
+    cout<<"array: "<<endl; 
+    for(i=0; i<max; i++)
+    {
+        if(arr[i]!= NULL)
+            cout<<arr[i]<<" ";
+    }
+    }           
+}
+
